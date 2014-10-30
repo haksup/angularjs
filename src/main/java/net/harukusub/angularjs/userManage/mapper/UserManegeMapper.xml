@@ -1,0 +1,101 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.harukusub.angularjs.userManage.dao.UserManageDao">
+	
+	<select id="userSelectList" parameterType="hashmap" resultType="hashmap">
+		SELECT /* userSelectList */
+			  USR_ID AS usrId
+			, USR_NM AS usrNm
+			, PHONE1_1 AS phone1_1
+			, PHONE1_2 AS phone1_2
+			, PHONE1_3 AS phone1_3
+			, EMAIL AS email
+			, WRTR AS wrtr
+			, UPDTR AS updtr
+			, DATE_FORMAT(WRT_DT, '%Y-%m-%d') AS wrtDt
+			, DATE_FORMAT(UPD_DT, '%Y-%m-%d') AS updDt
+		FROM 
+			USERS
+		ORDER BY
+			USR_NM
+	</select>
+	
+	<select id="userSelectListCount" parameterType="hashmap" resultType="int">
+		SELECT	/* userSelectListCount */
+			COUNT(*) AS CNT
+		FROM
+			USERS
+	</select>
+	
+	<select id="userSelect" parameterType="hashmap" resultType="hashmap">
+		SELECT /* userSelect */
+			  USR_ID AS usrId
+			, USR_NM AS usrNm
+			, PHONE1_1 AS phone1_1
+			, PHONE1_2 AS phone1_2
+			, PHONE1_3 AS phone1_3
+			, EMAIL AS email
+			, WRTR AS wrtr
+			, UPDTR AS updtr
+			, DATE_FORMAT(WRT_DT, '%Y-%m-%d') AS wrtDt
+			, DATE_FORMAT(UPD_DT, '%Y-%m-%d') AS updDt
+		FROM 
+			USERS
+		WHERE
+			USR_ID = #{usrId}
+	</select>
+	
+	<insert id="userInsert" parameterType="hashmap">
+		INSERT INTO USERS	/* userInsert */
+		(
+			USR_ID
+			, PASSWORD
+			, USR_NM
+			, PHONE1_1
+			, PHONE1_2
+			, PHONE1_3
+			, EMAIL
+			, WRTR
+			, UPDTR
+			, WRT_DT
+			, UPD_DT
+		)
+		VALUES
+		(
+			#{usrId}
+			, #{password}
+			, #{usrNm}
+			, #{phone1_1}
+			, #{phone1_2}
+			, #{phone1_3}
+			, #{email}
+			, #{wrtr}
+			, #{updtr}
+			, CURRENT_TIMESTAMP
+			, CURRENT_TIMESTAMP
+		)
+	</insert>
+	
+	<update id="userUpdate" parameterType="hashmap">
+		UPDATE
+			USERS
+		SET
+			PASSWORD = #{password}
+			, USR_NM = #{usrNm}
+			, PHONE1_1 = #{phone1_1} 
+			, PHONE1_2 = #{phone1_2}
+			, PHONE1_3 = #{phone1_3}
+			, EMAIL = #{email}
+			, UPDTR = #{updtr}
+			, UPD_DT = CURRENT_TIMESTAMP
+		WHERE
+			USR_ID = #{usrId}
+	</update>
+	
+	<delete id="userDelete" parameterType="hashmap">
+		DELETE FROM USERS WHERE USR_ID = #{usrId}
+	</delete>
+	
+</mapper>

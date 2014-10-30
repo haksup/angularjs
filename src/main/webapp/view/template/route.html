@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html ng-app="sampleApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>사용자 관리</title>
+
+<!-- js, css include(S)-->
+<script type="text/javascript" src="../../js/jquery/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="../../js/angular/angular.js"></script>
+<script type="text/javascript" src="../../js/angular/angular-route.js"></script>
+<!-- js, css include(E)-->
+
+<!-- controller(S) -->
+<script type="text/javascript">
+	var app = angular.module('sampleApp', ['ngRoute']);
+	app.config(['$routeProvider', function($routeProvider){
+		$routeProvider
+			.when('/home', {templateUrl:'home.tmpl.html'})
+			.when('/about', {templateUrl:'about.tmpl.html', controller:'aboutCtrl'})
+			.when('/contact', {templateUrl:'contact.tmpl.html', controller:'contactCtrl'})
+			.otherwise({redirectTo : '/home'});
+	}]);
+	app.controller('aboutCtrl',['$scope', function($scope){
+		$scope.sales = 2000000;
+	}]);
+	app.controller('contactCtrl',['$scope', function($scope){
+		$scope.contactSubmit = function(contact){
+			alert(contact.name + "에게 " + contact.contents + "를 전달했습니다.");
+		}
+	}]);
+</script>
+<!-- controller(E) -->
+</head>
+<body class="well">
+	<a href="#home">홈</a>
+	<a href="#about">회사</a>
+	<a href="#contact">연락</a>
+	<ng-view></ng-view>
+</body>
+</html>

@@ -22,6 +22,11 @@ public class UserManageController {
 	@Autowired
 	private UserManageService userManageService;
 	
+	@RequestMapping(value="/index", method=RequestMethod.GET)
+	public String index(){
+		return "/view/angular/index.html";
+	}
+	
 	@RequestMapping(value="/userList", method=RequestMethod.GET)
 	public String userList(){
 		return "/view/userManage/userList.html";

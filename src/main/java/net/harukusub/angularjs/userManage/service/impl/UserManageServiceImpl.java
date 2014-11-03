@@ -3,6 +3,7 @@ package net.harukusub.angularjs.userManage.service.impl;
 import java.util.HashMap;
 import java.util.List;
 
+import net.harukusub.angularjs.userManage.controller.UserVO;
 import net.harukusub.angularjs.userManage.dao.UserManageDao;
 import net.harukusub.angularjs.userManage.service.UserManageService;
 
@@ -30,8 +31,8 @@ public class UserManageServiceImpl implements UserManageService {
 	}
 	
 	@Override
-	public int userUpdate(HashMap<String, Object> paramMap) {
-		return userManageDao.userUpdate(paramMap);
+	public int userUpdate(UserVO userVo) {
+		return userManageDao.userUpdate(userVo);
 	}
 
 	@Override

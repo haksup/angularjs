@@ -75,7 +75,8 @@
 		                        <tr>
 		                            <td>아이디</td>
 		                            <td>
-										<input id="usrId" class="form-control" ng-model="user.usrId">
+										<input ng-if="IUFlag == 'I'" id="usrId" class="form-control" ng-model="user.usrId">
+										<span ng-if="IUFlag == 'U'">{{user.usrId}}</span>
 									</td>
 		                        </tr>
 		                        <tr>

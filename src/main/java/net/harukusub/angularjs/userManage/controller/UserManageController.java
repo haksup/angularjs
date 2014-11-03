@@ -11,6 +11,7 @@ import net.harukusub.angularjs.userManage.service.UserManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,9 +65,10 @@ public class UserManageController {
 	
 	@RequestMapping(value="/user", method=RequestMethod.PUT)
 	public void userUpdate(HttpServletRequest request, HttpServletResponse response
-			, @RequestParam HashMap<String,Object> paramMap){
-		paramMap.put("updtr", "updater");
-		userManageService.userUpdate(paramMap);
+			, @RequestBody UserVO userVo){
+		userVo.setUpdtr("updater");
+		System.out.println("aaaa " + userVo.getPassword());
+		userManageService.userUpdate(userVo);
 	}
 
 	@RequestMapping(value="/user/{usrId}", method=RequestMethod.DELETE)

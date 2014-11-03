@@ -68,7 +68,7 @@ appCtrl.controller('userListCtrl', ['$scope','userService', function($scope, use
 		userPromise.success(function(data){
 			alert("사용자가 삭제되었습니다.");
 			$scope.userListQuery();
-			$scope.IUFlag = "I";
+			$scope.IUFlag = "";
 			$scope.user = {};
 		});
 		userPromise.error(function(){
@@ -100,7 +100,7 @@ appSvc.factory('userService', ['$http','$resource', function($http, $resource){
 	};
 	
 	dataFactory.update = function(data){
-		return $http.put('/userManage/user', $.param(data), config);
+		return $http.put('/userManage/user', data);
 	};
 	
 	dataFactory.remove = function(usrId){

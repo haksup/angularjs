@@ -33,6 +33,7 @@
 		SELECT /* userSelect */
 			  USR_ID AS usrId
 			, USR_NM AS usrNm
+			, PASSWORD AS password
 			, PHONE1_1 AS phone1_1
 			, PHONE1_2 AS phone1_2
 			, PHONE1_3 AS phone1_3
@@ -78,7 +79,7 @@
 		)
 	</insert>
 	
-	<update id="userUpdate" parameterType="hashmap">
+	<update id="userUpdate" parameterType="java.net.harukusub.angularjs.userManage.controller.UserVO">
 		UPDATE
 			USERS
 		SET

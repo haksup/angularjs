@@ -10,20 +10,11 @@
 <link rel="stylesheet" type="text/css" href="../../css/bootstrap/bootstrap.css" />
 <script type="text/javascript" src="../../js/angular/angular.js"></script>
 <script type="text/javascript" src="../../js/angular/angular-resource.js"></script>
+<script type="text/javascript" src="../../view/userManage/ngJs/userListNgJs.js"></script>
 <!-- js, css include(E)-->
 
-<!-- controller(S) -->
-<script type="text/javascript">
-	// Application(S)
-	var app = angular.module('userListApp', []);
-	// Application(E)
-	
-	
-
-</script>
-<!-- controller(E) -->
 </head>
-<body>
+<body ng-controller="userListCtrl">
 	<div id="wrapper">
 		<!-- content(S) -->
 		<div id="page-wrapper">
@@ -34,7 +25,7 @@
             </div>
 			<div class="row">
                 <div class="col-lg-12 text-right">
-                	<button type="button" class="btn btn-primary" ng-click="newUserFormPopup()">신규</button>
+                	<button type="button" class="btn btn-primary" ng-click="userReset()">신규</button>
                 </div>
             </div>
             <div class="row">
@@ -50,11 +41,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="odd gradeX">
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                <tr class="odd gradeX" ng-repeat="user in userList" ng-click="userShow()">
+                                    <td>{{user.usrId}}</td>
+                                    <td>{{user.usrNm}}</td>
+                                    <td>{{user.phone1_1}} - {{user.phone1_2}} - {{user.phone1_3}}</td>
+                                    <td>{{user.email}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -84,12 +75,12 @@
 		                        <tr>
 		                            <td>아이디</td>
 		                            <td>
-										<input id="userId" class="form-control">
+										<input id="usrId" class="form-control" ng-model="user.usrId">
 									</td>
 		                        </tr>
 		                        <tr>
 		                            <td>비밀번호</td>
-		                            <td><input id="password" class="form-control"></td>
+		                            <td><input id="password" class="form-control" ng-model="user.password"></td>
 		                        </tr>
 		                        <tr>
 		                            <td>비밀번호 확인</td>
@@ -97,17 +88,17 @@
 		                        </tr>
 		                        <tr>
 		                            <td>성명</td>
-		                            <td><input id="usrNm" class="form-control"></td>
+		                            <td><input id="usrNm" class="form-control" ng-model="user.usrNm"></td>
 		                        </tr>
 		                        <tr>
 		                            <td>연락처</td>
 		                            <td>
 		                               	<div class="form-group input-group col-lg-8">
-		                               		<input id="phone1_1" type="text" class="form-control" />
+		                               		<input id="phone1_1" type="text" class="form-control" ng-model="user.phone1_1" />
 	                                        <span class="input-group-addon">-</span>
-	                                        <input id="phone1_2" type="text" class="form-control" />
+	                                        <input id="phone1_2" type="text" class="form-control" ng-model="user.phone1_2" />
 	                                        <span class="input-group-addon">-</span>
-	                                        <input id="phone1_3" type="text" class="form-control" />
+	                                        <input id="phone1_3" type="text" class="form-control" ng-model="user.phone1_3" />
 	                                    </div>
 		                            </td>
 		                        </tr>
@@ -115,7 +106,7 @@
 		                            <td>이메일</td>
 		                            <td>
 		                              	<div class="form-group input-group">
-		                              		<input id="email" type="text" class="form-control" />
+		                              		<input id="email" type="text" class="form-control" ng-model="user.email" />
 	                                    </div>
 									</td>
 		                        </tr>
@@ -126,8 +117,9 @@
 	        </div>
 	        <div class="row">
 	            <div class="col-lg-12 text-center">
-	           		<button type="button" class="btn btn-primary">저장</button>
-	           		<button type="button" class="btn btn-primary">삭제</button>
+	           		<button type="button" class="btn btn-primary" ng-click="userCreate()" ng-show="IUFlag == 'I'">저장</button>
+	           		<button type="button" class="btn btn-primary" ng-click="userUpdate()" ng-show="IUFlag == 'U'">수정</button>
+	           		<button type="button" class="btn btn-primary" ng-click="userDelete()" ng-show="IUFlag == 'U'">삭제</button>
 	            </div>
 	        </div>
 		</div>

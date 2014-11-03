@@ -162,6 +162,14 @@
 			<version>1.8.2</version>
 		</dependency>
 		<!-- aspectj(E) -->
+		
+		<!-- jersey(S) - rest support -->
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>1.8</version>
+		</dependency>
+		<!-- jersey(S) - rest support -->
 	</dependencies>
 
 	<build>

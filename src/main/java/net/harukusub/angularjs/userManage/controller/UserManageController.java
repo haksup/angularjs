@@ -33,7 +33,7 @@ public class UserManageController {
 	}
 
 	
-	@RequestMapping(value="/user/query", method=RequestMethod.GET)
+	@RequestMapping(value="/user", method=RequestMethod.GET)
 	@ResponseBody
 	public List<?> userSelectList(@RequestParam HashMap<String,Object> paramMap){
 		List<?> userList = userManageService.userSelectList(paramMap);
@@ -44,7 +44,7 @@ public class UserManageController {
 		return userList;
 	}
 
-	@RequestMapping(value="/user/create", method=RequestMethod.POST)
+	@RequestMapping(value="/user", method=RequestMethod.POST)
 	public void userInsert(HttpServletRequest request, HttpServletResponse response
 			, @RequestParam HashMap<String,Object> paramMap){
 		paramMap.put("wrtr", "user");
@@ -52,7 +52,7 @@ public class UserManageController {
 		userManageService.userInsert(paramMap);
 	}
 	
-	@RequestMapping(value="/user/show/{usrId}", method=RequestMethod.GET)
+	@RequestMapping(value="/user/{usrId}", method=RequestMethod.GET)
 	@ResponseBody
 	public HashMap<String, Object> userSelect(@PathVariable String usrId){
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();
@@ -62,14 +62,14 @@ public class UserManageController {
 		return resultMap;
 	}
 	
-	@RequestMapping(value="/user/update", method=RequestMethod.PUT)
+	@RequestMapping(value="/user", method=RequestMethod.PUT)
 	public void userUpdate(HttpServletRequest request, HttpServletResponse response
 			, @RequestParam HashMap<String,Object> paramMap){
 		paramMap.put("updtr", "updater");
 		userManageService.userUpdate(paramMap);
 	}
 
-	@RequestMapping(value="/user/delete/{usrId}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/user/{usrId}", method=RequestMethod.DELETE)
 	@ResponseBody
 	public void userDelete(@PathVariable String usrId){
 		HashMap<String, Object> paramMap = new HashMap<String, Object>();

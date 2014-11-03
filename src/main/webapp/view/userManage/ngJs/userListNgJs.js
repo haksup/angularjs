@@ -37,12 +37,12 @@ appCtrl.controller('userListCtrl', ['$scope','userService', function($scope, use
 	// 사용자 insert(S)
 	$scope.userCreate = function(){
 		var userPromise = userService.create($scope.user);
-		userPromise.success(function(data){
+		userPromise.success(function(data, status, headers, config){
 			alert("사용자가 추가되었습니다.");
 			$scope.userListQuery();
 			$scope.IUFlag = "U";
 		});
-		userPromise.error(function(){
+		userPromise.error(function(data, status, headers, config){
 			alert("사용자 추가중 문제가 발생하였습니다.");
 		});
 	};
